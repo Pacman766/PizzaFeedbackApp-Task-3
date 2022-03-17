@@ -1,70 +1,52 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Task #3 - Feedbacks
+Our PizzaParty is over and now we need to collect feedback from participants. This information will be used for future parties. I think it will be a good idea to collect guest phone numbers, comments, and a 5-star rating. You can add other fields which you think would be useful.
+API
+Party guests
+https://gp-js-test.herokuapp.com/pizza/guests
+The World Book of Diets
+https://gp-js-test.herokuapp.com/pizza/world-diets-book/NAMES
+Check your guests if they are vegans. NAMES is urlencoded guest names separated by a comma.
+Example:
+https://gp-js-test.herokuapp.com/pizza/world-diets-book/Anton%20Chehov,Vladimir%20Pushkin
+Get diets for "Anton Chehov" and "Vladimir Pushkin"
+How PizzaFeedbackApp should look and work?
+We start with an empty page with text “Loading”:
+1.	on page load:
+a.	if it is the first load and LocalStorage is empty - we request guests and their diets and save this in LocalStorage
+b.	if we already opened the app - get the list of guests from LocalStorage
+2.	display guests list when guests and diets are loaded (from API or LocalStorage)
+3.	make clickable guests who ate pizza - vegans should be displayed with green
+4.	when clicking the guest name: 
+a.	hide the guest list
+b.	if the feedback for the guest was not filled - show a form with necessary fields and the 5-star rating (3 stars is the default rating)
+c.	otherwise (if the feedback for the guest was filled), show the page with filled information and DELETE button (show only the information, no forms should be visible here)
+5.	show empty feedback form for a current guest if DELETE button was clicked
+a.	show an error message if a phone number is wrong (the phone field should be 3-10 chars length and accept numbers, +, () and a space " " char)
+b.	by default show the CANCEL button
+c.	show SAVE button when information is filled and valid
+6.	CANCEL button closes the form and shows the guests list
+7.	SAVE button stores feedback to LocalStorage and shows guests list 
+8.	DELETE button removes feedback from LocalStorage and shows guests list (and removes a tick mark from the guest, of course)
+9.	mark guests with saved feedback using   (use emoji "tick" symbol)
+10.	add the "Clear app" button which removes all cached data (guests list, guests feedback). When clicking on it the app should be refreshed and the new guests' list is requested (step 1a)
+What to use
+1.	Use any framework you want: React, Svelte, SolidJS, Elm, Backbone, Vue
+2.	Use form libs with React, if you want: react-hook-forms, Formik, etc. If you chose another framework (not React), you can use any lib that will help to work with forms.
+3.	Use any lib that can help with working with API and LocalStorage: SWR, react-query, redux-persist, etc. If you chose another framework (not React), you can use any lib that will help in this.
+4.	Any CSS framework can be used (Bootstrap, MaterialUI, etc.)
+How/where to create PizzaFeedbackApp?
+Link to your app should be sent via https://forms.gle/rL6z1H29ChUkb6kG9. 
+UI examples
+How to render guest	Why?
+Marley York (not clickable)	Guest who did not eat pizza
+Lynn Cooke	Guest who ate pizza (haven't filled the feedback yet)
+Tanner Holmes	Vegan guest who ate pizza (haven't filled the feedback yet)
+ Reggie Dawson	Guest who filled feedback
+  Brett George	Vegan guest with filled feedback
+Feedback screen examples
+ 
+Filling the form
+ 
+Empty form
+ 
+View after saving the form or when opening user with filled feedback

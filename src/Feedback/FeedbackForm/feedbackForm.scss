@@ -1,0 +1,33 @@
+form {
+    padding: 3px;
+}
+
+
+input {
+    width: 99%;
+}
+
+#comment {
+    height: 130px;
+    width: 100%;
+}
+
+
+.field_name {
+    color: white;
+}
+
+button {
+    width: 100%;
+    background-color: #be4710;
+    color: white;
+    border-color: white;
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    margin-top: 4px;
+    border-radius: 10px;
+    &:hover {
+        background-color: #be471062;
+    }
+}
+

@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+p {
+    border-bottom: 1px solid white;
+    padding: 4px;
+}
+
+
+.noEatsPizza {
+    color: #6e746d;
+    pointer-events: none;
+}
+
+
+.eatsPizza {
+    &:hover {
+        color: rgba(255, 255, 255, 0.479);
+    }
+}
+
+
+
+.vegans {
+    color: #5ee457;
+    &:hover {
+        color: #16ac0c;
+    }
+}
+
+
