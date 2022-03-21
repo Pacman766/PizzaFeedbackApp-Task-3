@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Feedback from "../Feedback/Feedback";
-import { setFeedbacksIntoLocalStorage } from "../localStorage/localStorageUtils";
-import "./guestsList.scss";
-import Guest from "./Guest/Guest";
+import React, { useEffect, useState } from 'react';
+import Feedback from '../Feedback/Feedback';
+import { setFeedbacksIntoLocalStorage } from '../localStorage/localStorageUtils';
+import './guestsList.scss';
+import Guest from './Guest/Guest';
 import {
   fetchDietsAsync,
   fetchGuestsAsync,
@@ -10,7 +10,7 @@ import {
   getGuestsFromLocalStorage,
   setDietsIntoLocalStorage,
   setGuestsIntoLocalStorage,
-} from "./utils";
+} from './utils';
 
 const GuestList = () => {
   const [guests, setGuests] = useState([]);
@@ -19,6 +19,7 @@ const GuestList = () => {
   const [isFeedbackDialogshown, setIsFeedbackDialogShown] = useState(false);
   const [clickedUserName, setClickedUserName] = useState(undefined);
 
+  // set guests, put them in localStorage, put empty arr in feedback LS
   const loadGuestsAsync = async () => {
     const guests = await fetchGuestsAsync();
     setGuests(guests);
@@ -27,6 +28,8 @@ const GuestList = () => {
     return guests;
   };
 
+  // setting loading true, filter guests who eats pizza and push them
+  // in localStorage, set load- false and return these guests
   const loadDietsAsync = async (guests, shouldSetLoading = false) => {
     if (shouldSetLoading) {
       setIsLoading(true);
@@ -45,6 +48,7 @@ const GuestList = () => {
     return diets;
   };
 
+  // set loading true, get guests, get diet-guests, set loading false
   const loadPageAsync = async () => {
     setIsLoading(true);
     const guests = await loadGuestsAsync();
@@ -52,6 +56,8 @@ const GuestList = () => {
     setIsLoading(false);
   };
 
+  // if we have guests&&diet-guests in LS, set guests and set diet-guests,
+  // else load them
   useEffect(() => {
     const guestsInStorage = getGuestsFromLocalStorage();
     if (guestsInStorage && guestsInStorage.length) {
@@ -77,9 +83,9 @@ const GuestList = () => {
   };
 
   const handleCleaner = () => {
-    localStorage.removeItem("feedbacks");
-    localStorage.removeItem("diets");
-    localStorage.removeItem("guests");
+    localStorage.removeItem('feedbacks');
+    localStorage.removeItem('diets');
+    localStorage.removeItem('guests');
     setGuests([]);
     loadPageAsync();
   };
@@ -87,10 +93,7 @@ const GuestList = () => {
   return (
     <div className="container">
       {isFeedbackDialogshown ? (
-        <Feedback
-          name={clickedUserName}
-          onClose={handleFeedbackDialogClose}
-        />
+        <Feedback name={clickedUserName} onClose={handleFeedbackDialogClose} />
       ) : (
         <>
           {isLoading ? (

@@ -16,12 +16,14 @@ export const setDietsIntoLocalStorage = (diets) => {
   setStorageValue("diets", diets);
 }
 
+// get guests
 export const fetchGuestsAsync = async () => {
   const data = await fetch("https://gp-js-test.herokuapp.com/pizza/guests");
   const result = await data.json();
   return result.party;
 }
 
+// get encoded names
 export const fetchDietsAsync = async (people) => {
   const peopleNamesEncoded = people.map(({ name }) =>
     encodeURIComponent(name)
