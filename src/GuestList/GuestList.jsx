@@ -73,15 +73,18 @@ const GuestList = () => {
     }
   }, []);
 
+  // show feedback, set name
   const handleClick = (name) => {
     setIsFeedbackDialogShown(true);
     setClickedUserName(name);
   };
 
+  // close feedback dialog
   const handleFeedbackDialogClose = () => {
     setIsFeedbackDialogShown(false);
   };
 
+  // clear localStorage
   const handleCleaner = () => {
     localStorage.removeItem('feedbacks');
     localStorage.removeItem('diets');

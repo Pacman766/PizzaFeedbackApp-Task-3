@@ -7,6 +7,7 @@ import { setFeedbacksIntoLocalStorage } from "../localStorage/localStorageUtils"
 const Feedback = ({ name, onClose }) => {
   const [feedback, setFeedback] = useState(undefined);
 
+  // if we have feedback on LS, find name and set it
   useEffect(() => {
     const feedBacksFromLocalStorage = getFeedbacksFromLocalStorage();
     if (feedBacksFromLocalStorage && feedBacksFromLocalStorage.length) {
@@ -17,6 +18,8 @@ const Feedback = ({ name, onClose }) => {
     }
   }, []);
 
+  // if we have feedback on LS, find index of guestName, 
+  // splice this feedback and set to LS and set to undefined
   const handleDeleteFeedback = () => {
     const feedBacksFromLocalStorage = getFeedbacksFromLocalStorage();
     console.log(feedBacksFromLocalStorage);
