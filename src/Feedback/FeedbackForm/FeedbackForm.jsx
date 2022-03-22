@@ -6,6 +6,7 @@ import { saveFeedbackToLocalStorage } from "./utils";
 import "./feedbackForm.scss";
 
 const FeedbackForm = ({ name, onClose }) => {
+  // use useForm hook to create form
   const {
     register,
     handleSubmit,
